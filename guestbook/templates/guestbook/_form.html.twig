@@ -1,0 +1,24 @@
+{{ form_start(form) }}
+    {{ form_errors(form) }}
+    <label class="form-label">First name</label>
+    <div class="input-group mb-3">
+        {{ form_widget(form.firstname, {attr: {class: 'form-control'}}) }}
+        {{ form_errors(form.firstname) }}
+    </div>
+    <label class="form-label">Last name</label>
+    <div class="input-group mb-3">
+        {{ form_widget(form.lastname, {attr: {class: 'form-control'}}) }}
+        {{ form_errors(form.lastname) }}
+    </div>
+    <label class="form-label">Email</label>
+    <div class="input-group mb-3">
+        {{ form_widget(form.email, {attr: {class: 'form-control'}}) }}
+        {{ form_errors(form.email) }}
+    </div>
+    <label class="form-label">Message</label>
+    <div class="input-group mb-3">
+        {{ form_widget(form.content, {attr: {class: 'form-control'}}) }}
+        {{ form_errors(form.content) }}
+    </div>
+    <button class="btn btn-primary">{{ button_label|default('Save post') }}</button>
+{{ form_end(form) }}

@@ -1,0 +1,4 @@
+<form class="d-inline" method="post" action="{{ path('app_guestbook_delete', {'id': guestbook.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ guestbook.id) }}">
+    <button class="btn btn-danger">Delete</button>
+</form>

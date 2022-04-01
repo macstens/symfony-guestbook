@@ -74,11 +74,15 @@ class GuestbookFixtures extends Fixture
         ];
 
         foreach($data as $date) {
+            $created = new \DateTime('-'.rand(1, 500).' days');
+            $updated = new \DateTime('-'.rand(501, 1000).' days');
             $guestbook = new Guestbook();
             $guestbook->setFirstname($date[0]);
             $guestbook->setLastname($date[1]);
             $guestbook->setEmail($date[2]);
             $guestbook->setContent($date[3]);
+            $guestbook->setCreatedAt($created);
+            $guestbook->setUpdatedAt($updated);
             $manager->persist($guestbook);
         }
 

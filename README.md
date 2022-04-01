@@ -26,5 +26,8 @@ php bin/console doctrine:fixtures:load
 Webpack ausführen über:
 npm run watch
 
+Webserver starten:
+symfony server:start
+
 TODO:
 - Mögliche Fehlermeldungen nach AJAX Submit anzeigen

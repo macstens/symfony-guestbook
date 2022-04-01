@@ -14,9 +14,11 @@
             <div class="list-group-item">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{ guestbook.firstname }} {{ guestbook.lastname }}</h5>
-                <small>{{ guestbook.email }}</small>
+                <small>Created: {{ guestbook.getCreatedAt().format('d.m.Y h:i') }}</small>
+                <small>Updated: {{ guestbook.getUpdatedAt().format('d.m.Y h:i') }}</small>
               </div>
               <p class="mb-1">{{ guestbook.content }}</p>
+              <small>{{ guestbook.email }}</small>
             </div>
           {% else %}
             <div class="list-group-item">

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\TimestampableTrait;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 
@@ -14,6 +15,8 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
  */
 class Guestbook
 {
+    use TimestampableTrait;
+
     /**
      * @var int|null
      *

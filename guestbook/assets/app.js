@@ -10,3 +10,30 @@ import './styles/app.scss';
 
 // start the Stimulus application
 import './bootstrap';
+require('bootstrap');
+
+$.ajax(
+    '/guestbook/form', 
+    { 
+        success : function(data, textStatus, jqXHR) {
+            let form = $(data).find('#create-form');
+            $('#form-guestbook-new').html(form).on('submit', function(){
+                let formContainer = $(this);
+                formContainer.find('#create-new-submit-button').attr('disabled', 'disabled').find('.spinner-border').removeClass('d-none').end().find('.text-state').hide();
+                $.ajax('/guestbook/new',
+                {
+                    method: 'POST',
+                    data: formContainer.find('form').serializeArray(),
+                    success : function(data, textStatus, jqXHR) {
+                        formContainer.find('#create-new-submit-button').removeAttr('disabled')
+                            .find('.spinner-border').addClass('d-none').end()
+                            .find('.text-state').show().end().end()
+                            .find('form').trigger('reset');
+                        $("#formToastSuccess").removeClass('hide').addClass("show");
+                    }
+                });
+                return false;
+            });
+        }
+    }
+);

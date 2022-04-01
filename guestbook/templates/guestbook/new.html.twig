@@ -8,7 +8,9 @@
         <h2 class="card-title">Create new guestbook post</h2>
     </div>
     <div class="card-body">
-        {{ include('guestbook/_form.html.twig') }}
+        <div id="create-form">
+            {{ include('guestbook/_form.html.twig') }}
+        </div>
     </div>
     <div class="card-footer">
         <a class="btn btn-secondary" href="{{ path('app_guestbook_index') }}">Back to list</a>

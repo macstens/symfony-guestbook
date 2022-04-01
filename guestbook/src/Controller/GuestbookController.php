@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -22,10 +23,30 @@ class GuestbookController extends AbstractController
     {
         $guestbooks = $entityManager
             ->getRepository(Guestbook::class)
-            ->findAll();
-
+            ->findBy(
+                [], // where
+                ['id' => 'DESC'], // order by
+                10, // limit
+                0 // offset
+            );
+        
         return $this->render('guestbook/index.html.twig', [
             'guestbooks' => $guestbooks,
+        ]);
+    }
+
+    /**
+     * @Route("/form", name="app_guestbook_form", methods={"GET", "POST"})
+     */
+    public function form(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $guestbook = new Guestbook();
+        $form = $this->createForm(GuestbookType::class, $guestbook);
+        $form->handleRequest($request);
+
+        return $this->renderForm('guestbook/new.html.twig', [
+            'guestbook' => $guestbook,
+            'form' => $form,
         ]);
     }
 
@@ -42,13 +63,15 @@ class GuestbookController extends AbstractController
             $entityManager->persist($guestbook);
             $entityManager->flush();
 
+            if ($request->isXMLHttpRequest()) {         
+                return new JsonResponse(array('data' => 'success'));
+            }
             return $this->redirectToRoute('app_guestbook_index', [], Response::HTTP_SEE_OTHER);
         }
-
-        return $this->renderForm('guestbook/new.html.twig', [
-            'guestbook' => $guestbook,
-            'form' => $form,
-        ]);
+        $errors = $form->getErrors(true);
+        if ($request->isXMLHttpRequest()) {         
+            return new JsonResponse(array('data' => 'failure', 'errors' => $errors));
+        }
     }
 
     /**

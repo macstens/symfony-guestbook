@@ -105,7 +105,7 @@ class Guestbook
     {
 
         $metadata->addPropertyConstraint('content', new Assert\Length([
-            'min' => 10,
+            'min' => 1,
             'max' => 150,
             'minMessage' => 'Your message must be at least {{ limit }} characters long',
             'maxMessage' => 'Your message cannot be longer than {{ limit }} characters',

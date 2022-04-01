@@ -9,39 +9,42 @@
         <h2 class="card-title">Welcome to our Guestbook</h2>
     </div>
     <div class="card-body">
-        <table class="table">
-        <thead>
-            <tr>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Content</th>
-                <th>Email</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for guestbook in guestbooks %}
-            <tr>
-                <td>{{ guestbook.firstname }}</td>
-                <td>{{ guestbook.lastname }}</td>
-                <td>{{ guestbook.content }}</td>
-                <td>{{ guestbook.email }}</td>
-                <td>
-                    <a class="btn btn-secondary" href="{{ path('app_guestbook_show', {'id': guestbook.id}) }}">Show</a>
-                    <a class="btn btn-secondary" href="{{ path('app_guestbook_edit', {'id': guestbook.id}) }}">Edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">No records found :(</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+      <div class="list-group">
+          {% for guestbook in guestbooks %}
+            <div class="list-group-item">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ guestbook.firstname }} {{ guestbook.lastname }}</h5>
+                <small>{{ guestbook.email }}</small>
+              </div>
+              <p class="mb-1">{{ guestbook.content }}</p>
+            </div>
+          {% else %}
+            <div class="list-group-item">
+              <p class="mb-1">No records found :(</p>
+            </div>
+          {% endfor %}
+      </div>
     </div>
     <div class="card-footer">
         <a class="btn btn-primary" href="{{ path('app_guestbook_new') }}">Create new post</a>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-form-create">Create new post ajax</button>
     </div>
+</div>
+<div class="modal fade" tabindex="-1" id="modal-form-create" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create new guestbook post</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="form-guestbook-new"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close and back to list</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 {% endblock %}

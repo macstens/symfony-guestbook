@@ -4,8 +4,8 @@ Repository für Marcel Freitag.
 
 Aufgabe: Mini Gästebuch
 
-Entwickle in einem Framework Deiner Wahl
-- Nutze ein Datenbank-System Deiner Wahl (zB MySQL oder SQLite)
+Entwickle in einem Framework Deiner Wahl --> Symfony 6 um sich damit vertraut zu machen
+- Nutze ein Datenbank-System Deiner Wahl (zB MySQL oder SQLite) --> SQLite
 - Nutze eine Composer Installation des Frameworks
 - Achte auf Clean Code
 
@@ -31,3 +31,7 @@ symfony server:start
 
 TODO:
 - Mögliche Fehlermeldungen nach AJAX Submit anzeigen
+- Command ausführen, bisher nur Pseudocode. Nicht ausführbar bekommen
+- entsprechend fehlt der Unit test
+
+Über Hinweise wäre ich sehr dankbar :)

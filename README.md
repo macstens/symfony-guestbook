@@ -1,6 +1,3 @@
-# rocketmedia-mfTest-2022
-
-Repository für Marcel Freitag.
 
 Aufgabe: Mini Gästebuch
 
@@ -28,10 +25,3 @@ npm run watch
 
 Webserver starten:
 symfony server:start
-
-TODO:
-- Mögliche Fehlermeldungen nach AJAX Submit anzeigen
-- Command ausführen, bisher nur Pseudocode. Nicht ausführbar bekommen
-- entsprechend fehlt der Unit test
-
-Über Hinweise wäre ich sehr dankbar :)
